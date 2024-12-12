@@ -9,7 +9,7 @@ Funcionalidade: Compra Produto
     E adiciono ao carrinho
     E confirmo o pedido do item <produto> com valor <preço>
     E preencho as informações pessoais
-    E valido as informações do pedido
+    E valido as informações do pedido com <produto> e <preço>
     Quando clico no botão de confirmação
     Entao o pedido é gerado com sucesso
 
