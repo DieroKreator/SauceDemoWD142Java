@@ -131,14 +131,12 @@ public class CompraProdutoBDD {
         }
 
         @E("valido as informações do pedido com {string} e {string}")
-        public void valido_as_informações_do_pedido_com_e(String string, String string2) {
+        public void valido_as_informações_do_pedido_com_e(String nomeProduto, String preço) {
                 
                 WebElement itemLabel = driver
-                                .findElement(By.xpath("//div[@class='inventory_item_name' and text()='" + nomeProduto
-                                                + "']"));
+                                .findElement(By.xpath("//div[@class='inventory_item_name' and text()='" + nomeProduto + "']"));
                 WebElement itemPrice = driver
-                                .findElement(By.xpath(
-                                                "//div[@class='inventory_item_price' and text()='" + preço + "']"));
+                                .findElement(By.xpath("//div[@class='inventory_item_price' and text()='" + preço + "']"));
 
                 assertEquals(itemLabel.getText(), nomeProduto);
                 assertEquals(itemPrice.getText(), preço);
@@ -157,7 +155,7 @@ public class CompraProdutoBDD {
 
         @Entao("o pedido é gerado com sucesso")
         public void o_pedido_é_gerado_com_sucesso() {
-                
+
                 assertEquals(driver.findElement(
                                 By.cssSelector("*[data-test=\"complete-header\"]")).getText(),
                                 "Thank you for your order!");
