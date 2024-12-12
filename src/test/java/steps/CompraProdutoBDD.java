@@ -18,6 +18,18 @@ public class CompraProdutoBDD {
 
     private WebDriver driver;
 
+    @Before
+    public void iniciar(){
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
+        driver.manage().window().maximize();
+    }
+
+    @After
+    public void finalizar(){
+        driver.quit();
+    }
+
     @Dado("que acesso o site {string}")
     public void que_acesso_o_site(String url) {
         driver.get(url);

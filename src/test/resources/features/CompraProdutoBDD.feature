@@ -1,4 +1,4 @@
-# language: pt
+#language: pt
 Funcionalidade: Compra Produto
     Selecionar e comprar um produto
 
