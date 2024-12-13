@@ -57,51 +57,7 @@ public class CompraProdutoBDD {
                 assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), "Products");
         }
 
-        // @E("seleciono o produto {string} com valor {string}")
-        // public void seleciono_o_produto_com_valor(String nomeProduto, String preço) {
-
-        // WebElement itemLabel;
-        // WebElement itemPrice;
-        // {
-        // this.nomeProduto = nomeProduto;
-        // itemLabel = driver
-        // .findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='"
-        // + nomeProduto + "']"));
-        // }
-
-        // {
-        // this.preço = preço;
-        // // itemPrice = driver
-        // // .findElement(By.xpath("//div[@class='inventory_item_price' and
-        // contains(text(),'" + preço + "')]"));
-
-        // List<WebElement> items =
-        // driver.findElements(By.xpath("//div[@data-test='inventory-item-price']"));
-
-        // for (WebElement item : items) {
-        // if (item.getText() == preço)
-        // break;
-        // }
-
-        // }
-
-        // // .findElement(By.xpath("//div[text()='" + nomeProduto
-        // // +
-        // //
-        // "']/ancestor::div[@class='inventory_item']//div[@class='inventory_item_price']"));
-        // // .findElement(By.cssSelector("*[data-test=\"inventory-item-price\"]"));
-        // // .findElement(By.xpath("(//div[@class='inventory_item_price'])[1]"));
-
-        // assertEquals(itemLabel.getText(), nomeProduto);
-        // assertEquals(itemPrice.getText(), preço);
-
-        // itemLabel.click();
-
-        // assertEquals(driver.findElement(By.cssSelector("*[data-test='back-to-products']")).getText(),
-        // "Back to products");
-        // assertEquals(itemLabel.getText(), nomeProduto);
-        // assertEquals(itemPrice.getText(), preço);
-        // }
+        /* TO DO: Implement code for 2 extra products */
         @E("seleciono o produto {string} com valor {string}")
         public void seleciono_o_produto_com_valor(String nomeProduto, String preço) {
 

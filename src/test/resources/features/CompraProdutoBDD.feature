@@ -1,4 +1,4 @@
-#language: pt
+# language: pt
 Funcionalidade: Compra Produto
     Selecionar e comprar um produto
 
@@ -14,6 +14,8 @@ Funcionalidade: Compra Produto
     Entao o pedido é gerado com sucesso
 
     Exemplos:
-      | produto               | preço    |
-      | "Sauce Labs Backpack" | "$29.99" |
-      | "Sauce Labs Onesie"   | "$7.99"  |
+      | produto                    | preço    |
+      | "Sauce Labs Backpack"      | "$29.99" |
+      | "Sauce Labs Onesie"        | "$7.99"  |
+      | "Sauce Labs Bike Light"    | "$9.99"  |
+      | "Sauce Labs Fleece Jacket" | "$49.99" |
