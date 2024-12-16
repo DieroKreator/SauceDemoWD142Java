@@ -1,5 +1,7 @@
 package test.java.pages;
 
+import org.openqa.selenium.WebDriver;
+
 public class CommonPage {
 
     public WebDriver driver;
