@@ -18,10 +18,13 @@ import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import test.java.pages.LoginPage;
 
-public class CompraProdutoBDD {
+public class CompraProdutoPO {
 
         WebDriver driver;
+        private LoginPage loginPage;
+
         String nomeProduto;
         String preço;
 
@@ -37,13 +40,16 @@ public class CompraProdutoBDD {
                 driver.quit();
         }
 
-        @Dado("que acesso o site {string}")
-        public void que_acesso_o_site(String url) {
-                driver.get(url);
+        @Dado("que acesso o site {string} po")
+        public void que_acesso_o_site_po(String url) {
+                loginPage = new LoginPage(driver);
+                loginPage.acessarLoginPage(url);
+
+                Assert.assertEquals("Swag Labs", loginPage.lerNomeDaGuia());
         }
 
-        @E("faço login")
-        public void faço_login() {
+        @E("faço login_po")
+        public void faço_login_po() {
 
                 WebElement usernameField = driver.findElement(By.cssSelector("*[data-test=\"username\"]"));
                 usernameField.sendKeys("standard_user");
@@ -58,8 +64,8 @@ public class CompraProdutoBDD {
         }
 
         /* TO DO: Implement code for 2 extra products */
-        @E("seleciono o produto {string} com valor {string}")
-        public void seleciono_o_produto_com_valor(String nomeProduto, String preço) {
+        @E("seleciono o produto {string} com valor {string} po")
+        public void seleciono_o_produto_com_valor_po(String nomeProduto, String preço) {
 
                 WebElement itemLabel;
                 WebElement itemPrice;
@@ -108,8 +114,8 @@ public class CompraProdutoBDD {
                 // assertEquals(itemPrice.getText(), preço);
         }
 
-        @E("adiciono ao carrinho")
-        public void adiciono_ao_carrinho() {
+        @E("adiciono ao carrinho po")
+        public void adiciono_ao_carrinho_po() {
 
                 WebElement addBtn = driver.findElement(By.id("add-to-cart"));
                 addBtn.click();
@@ -134,8 +140,8 @@ public class CompraProdutoBDD {
                 }
         }
 
-        @E("confirmo o pedido do item {string} com valor {string}")
-        public void confirmo_o_pedido_do_item_com_valor(String nomeProduto, String preço) {
+        @E("confirmo o pedido do item {string} com valor {string} po")
+        public void confirmo_o_pedido_do_item_com_valor_po(String nomeProduto, String preço) {
 
                 WebElement itemLabel;
                 WebElement itemPrice;
@@ -177,8 +183,8 @@ public class CompraProdutoBDD {
                                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Your Information");
         }
 
-        @E("preencho as informações pessoais")
-        public void preencho_as_informações_pessoais() {
+        @E("preencho as informações pessoais po")
+        public void preencho_as_informações_pessoais_po() {
 
                 WebElement firstnameField = driver.findElement(By.id("first-name"));
                 firstnameField.sendKeys("Usuario");
@@ -196,8 +202,8 @@ public class CompraProdutoBDD {
                                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Overview");
         }
 
-        @E("valido as informações do pedido com {string} e {string}")
-        public void valido_as_informações_do_pedido_com_e(String nomeProduto, String preço) {
+        @E("valido as informações do pedido com {string} e {string} po")
+        public void valido_as_informações_do_pedido_com_e_po(String nomeProduto, String preço) {
 
                 WebElement itemLabel = driver
                                 .findElement(By.xpath("//div[@class='inventory_item_name' and text()='" + nomeProduto
@@ -227,8 +233,8 @@ public class CompraProdutoBDD {
                 assertEquals(itemPrice.getText(), preço);
         }
 
-        @Quando("clico no botão de confirmação")
-        public void clico_no_botão_de_confirmação() {
+        @Quando("clico no botão de confirmação po")
+        public void clico_no_botão_de_confirmação_po() {
 
                 WebElement finishBtn = driver
                                 .findElement(By.id("finish"));
@@ -238,8 +244,8 @@ public class CompraProdutoBDD {
                                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Complete!");
         }
 
-        @Entao("o pedido é gerado com sucesso")
-        public void o_pedido_é_gerado_com_sucesso() {
+        @Entao("o pedido é gerado com sucesso po")
+        public void o_pedido_é_gerado_com_sucesso_po() {
 
                 assertEquals(driver.findElement(
                                 By.cssSelector("*[data-test='complete-header']")).getText(),
