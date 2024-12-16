@@ -28,19 +28,7 @@ public class CompraProdutoPO {
         String nomeProduto;
         String preço;
 
-        @Before
-        public void iniciar() {
-                driver = new ChromeDriver();
-                driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
-                driver.manage().window().maximize();
-        }
-
-        @After
-        public void finalizar() {
-                driver.quit();
-        }
-
-        @Dado("que acesso o site {string} po")
+        @Dado("que acesso o site {string} PO")
         public void que_acesso_o_site_po(String url) {
                 loginPage = new LoginPage(driver);
                 loginPage.acessarLoginPage(url);
