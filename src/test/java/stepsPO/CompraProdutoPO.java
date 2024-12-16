@@ -1,6 +1,6 @@
 package stepsPO;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -60,7 +60,7 @@ public class CompraProdutoPO {
                 WebElement loginBtn = driver.findElement(By.cssSelector("*[data-test=\"login-button\"]"));
                 loginBtn.click();
 
-                assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), "Products");
+                Assert.assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), "Products");
         }
 
         /* TO DO: Implement code for 2 extra products */
@@ -98,8 +98,8 @@ public class CompraProdutoPO {
 
                 }
 
-                assertEquals(itemLabel.getText(), nomeProduto);
-                assertEquals(itemPrice.getText(), preço);
+                Assert.assertEquals(itemLabel.getText(), nomeProduto);
+                Assert.assertEquals(itemPrice.getText(), preço);
 
                 itemLabel.click();
 
@@ -108,7 +108,7 @@ public class CompraProdutoPO {
                                 ExpectedConditions.visibilityOfElementLocated(
                                                 By.cssSelector("*[data-test='back-to-products']")));
 
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='back-to-products']")).getText(),
+                Assert.assertEquals(driver.findElement(By.cssSelector("*[data-test='back-to-products']")).getText(),
                                 "Back to products");
                 // assertEquals(itemLabel.getText(), nomeProduto);
                 // assertEquals(itemPrice.getText(), preço);
@@ -123,13 +123,13 @@ public class CompraProdutoPO {
                 WebElement removeBtn = driver.findElement(By.cssSelector("*[data-test='remove']"));
                 removeBtn.isDisplayed();
 
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='shopping-cart-badge']")).getText(), "1");
+                Assert.assertEquals(driver.findElement(By.cssSelector("*[data-test='shopping-cart-badge']")).getText(), "1");
 
                 WebElement cartLink = driver.findElement(By.cssSelector("*[data-test='shopping-cart-link']"));
                 cartLink.click();
 
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='item-quantity']")).getText(), "1");
+                Assert.assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
+                Assert.assertEquals(driver.findElement(By.cssSelector("*[data-test='item-quantity']")).getText(), "1");
         }
 
         public void delay(int milliseconds) {
@@ -173,8 +173,8 @@ public class CompraProdutoPO {
 
                 }
 
-                assertEquals(itemLabel.getText(), nomeProduto);
-                assertEquals(itemPrice.getText(), preço);
+                Assert.assertEquals(itemLabel.getText(), nomeProduto);
+                Assert.assertEquals(itemPrice.getText(), preço);
 
                 WebElement checkoutBtn = driver.findElement(By.cssSelector("button[data-test='checkout']"));
                 checkoutBtn.click();
@@ -198,7 +198,7 @@ public class CompraProdutoPO {
                 WebElement continueBtn = driver.findElement(By.id("continue"));
                 continueBtn.click();
 
-                assertEquals(driver.findElement(
+                Assert.assertEquals(driver.findElement(
                                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Overview");
         }
 
@@ -229,8 +229,8 @@ public class CompraProdutoPO {
 
                 }
 
-                assertEquals(itemLabel.getText(), nomeProduto);
-                assertEquals(itemPrice.getText(), preço);
+                Assert.assertEquals(itemLabel.getText(), nomeProduto);
+                Assert.assertEquals(itemPrice.getText(), preço);
         }
 
         @Quando("clico no botão de confirmação po")
@@ -240,14 +240,14 @@ public class CompraProdutoPO {
                                 .findElement(By.id("finish"));
                 finishBtn.click();
 
-                assertEquals(driver.findElement(
+                Assert.assertEquals(driver.findElement(
                                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Complete!");
         }
 
         @Entao("o pedido é gerado com sucesso po")
         public void o_pedido_é_gerado_com_sucesso_po() {
 
-                assertEquals(driver.findElement(
+                Assert.assertEquals(driver.findElement(
                                 By.cssSelector("*[data-test='complete-header']")).getText(),
                                 "Thank you for your order!");
         }
