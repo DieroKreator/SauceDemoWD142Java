@@ -6,13 +6,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class InventoryPage {
     
-    public InventoryPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+    // public InventoryPage(WebDriver driver) {
+    //     super(driver);
+    //     PageFactory.initElements(driver, this);
+    // }
 
-    public By byLocal(String local){
+    // public By byLocal(String local){
 
-        return By.cssSelector("option[value=\"" + local + "\"]");
-    }
+    //     return By.cssSelector("option[value=\"" + local + "\"]");
+    // }
 }
