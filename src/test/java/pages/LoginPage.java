@@ -18,24 +18,24 @@ public class LoginPage extends CommonPage{
         return By.cssSelector("option[value=\"" + local + "\"]");
     }
 
-    @FindBy(id = "user-name")
+    @FindBy(cssSelector = "[data-test=\"username\"]")
     WebElement usernameField;
 
-    @FindBy(id = "password")
+    @FindBy(cssSelector = "[data-test=\"password\"]")
     WebElement passwordField;
 
-    @FindBy(id = "login-button")
+    @FindBy(cssSelector = "[data-test=\"login-button\"]")
     WebElement loginBtn;
 
     public void acessarLoginPage(String url){
         driver.get(url);
     }
 
-    public void preencherUsername(){
+    protected void preencherUsername(){
         usernameField.sendKeys("standard_user");
     }
 
-    public void preencherPassword(){
+    protected void preencherPassword(){
         usernameField.sendKeys("secret_sauce");
     }
 

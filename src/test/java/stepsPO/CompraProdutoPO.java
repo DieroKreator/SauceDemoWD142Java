@@ -18,12 +18,14 @@ import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import test.java.pages.InventoryPage;
 import test.java.pages.LoginPage;
 
 public class CompraProdutoPO {
 
         WebDriver driver;
         private LoginPage loginPage;
+        private InventoryPage inventoryPage;
 
         String nomeProduto;
         String preço;
@@ -39,24 +41,23 @@ public class CompraProdutoPO {
         @E("faço login PO")
         public void faço_login_po() {
 
-                WebElement usernameField = driver.findElement(By.cssSelector("*[data-test=\"username\"]"));
-                usernameField.sendKeys("standard_user");
+                loginPage = new LoginPage(driver);
 
-                WebElement password = driver.findElement(By.cssSelector("*[data-test=\"password\"]"));
-                password.sendKeys("secret_sauce");
+                login.preencherUsername();
+                login.preencherPassword();
 
-                WebElement loginBtn = driver.findElement(By.cssSelector("*[data-test=\"login-button\"]"));
-                loginBtn.click();
-
+                login.clicarBotãoLogin();
                 assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), "Products");
         }
 
-        /* TO DO: Implement code for 2 extra products */
         @E("seleciono o produto {string} com valor {string} PO")
         public void seleciono_o_produto_com_valor_po(String nomeProduto, String preço) {
 
                 WebElement itemLabel;
                 WebElement itemPrice;
+
+                inventoryPage.selecionarProduto(nomeProduto, preço);
+
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
                 {
