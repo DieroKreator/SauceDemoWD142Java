@@ -1,4 +1,4 @@
-package test.java.stepsPO;
+package stepsPO;
 
 import java.time.Duration;
 
