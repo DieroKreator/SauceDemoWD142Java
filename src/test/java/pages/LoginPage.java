@@ -36,7 +36,7 @@ public class LoginPage extends CommonPage{
     }
 
     public void preencherPassword(){
-        usernameField.sendKeys("secret_sauce");
+        passwordField.sendKeys("secret_sauce");
     }
 
     public void clicarBotãoLogin(){
