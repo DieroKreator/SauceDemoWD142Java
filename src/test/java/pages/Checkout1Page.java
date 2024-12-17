@@ -37,7 +37,7 @@ public class Checkout1Page extends CommonPage{
     }
 
     public void preencherSobrenome(String sobreNome){
-        passwordField.sendKeys(sobreNome);
+        lastNameField.sendKeys(sobreNome);
     }
 
     public void preencherCodigoPostal(String codigoPostal){

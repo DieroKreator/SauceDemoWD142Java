@@ -23,6 +23,9 @@ import pages.LoginPage;
 import pages.InventoryPage;
 import pages.InventoryItemPage;
 import pages.CartPage;
+import pages.Checkout1Page;
+import pages.Checkout2Page;
+import pages.ConfirmationPage;
 
 public class CompraProdutoPO {
 
@@ -31,6 +34,9 @@ public class CompraProdutoPO {
         private InventoryPage inventoryPage;
         private InventoryItemPage inventoryItemPage;
         private CartPage cartPage;
+        private Checkout1Page checkout1Page;
+        private Checkout2Page checkout2Page;
+        private ConfirmationPage confirmationPage;
 
         String nomeProduto;
         String preço;
@@ -153,8 +159,8 @@ public class CompraProdutoPO {
 
                 cartPage = new CartPage(driver);
 
-                Assert.assertEquals(cartPage.lerNomeDaGuia(), "Your Cart");
-                // assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
+                // assertEquals(cartPage.lerNomeDaGuia(), "Your Cart");
+                assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
                 assertEquals(driver.findElement(By.cssSelector("*[data-test='item-quantity']")).getText(), "1");
 
                 WebElement itemLabel;
@@ -199,15 +205,15 @@ public class CompraProdutoPO {
         public void preencho_as_informações_pessoais_po() {
 
                 checkout1Page = new Checkout1Page(driver);
-                // assertEquals(driver.findElement(
-                //                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Your Information");
-                Assert.assertEquals(checkout1Page.lerNomeDaGuia(), "Checkout: Your Information");
+                assertEquals(driver.findElement(
+                                By.cssSelector("*[data-test='title']")).getText(), "Checkout: Your Information");
+                // assertEquals(checkout1Page.lerNomeDaGuia(), "Checkout: Your Information");
 
-                checkout1Page.preencherNome();
+                checkout1Page.preencherNome("Charlie");
 
-                checkout1Page.preencherSobrenome();
+                checkout1Page.preencherSobrenome("Green");
 
-                checkout1Page.preencherCodigoPostal();
+                checkout1Page.preencherCodigoPostal("91210258");
 
                 checkout1Page.clicarBotãoContinue();
 
@@ -218,7 +224,7 @@ public class CompraProdutoPO {
 
                 assertEquals(driver.findElement(
                         By.cssSelector("*[data-test='title']")).getText(), "Checkout: Overview");
-                        
+
                 WebElement itemLabel = driver
                                 .findElement(By.xpath("//div[@class='inventory_item_name' and text()='" + nomeProduto
                                                 + "']"));
