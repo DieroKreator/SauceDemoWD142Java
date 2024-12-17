@@ -59,6 +59,8 @@ public class CompraProdutoPO {
         @Dado("seleciono o produto {string} com valor {string} PO")
         public void seleciono_o_produto_com_valor_po(String nomeProduto, String preço) {
 
+                inventoryPage = new InventoryPage(driver);
+
                 WebElement itemLabel;
                 WebElement itemPrice;
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -94,6 +96,10 @@ public class CompraProdutoPO {
                 assertEquals(itemPrice.getText(), preço);
 
                 itemLabel.click();
+        }
+
+        @E("adiciono ao carrinho PO")
+        public void adiciono_ao_carrinho_po() {
 
                 // Wait for the element to be visible and fetch its text
                 WebElement backToProductsButton = wait.until(
@@ -102,12 +108,10 @@ public class CompraProdutoPO {
 
                 assertEquals(driver.findElement(By.cssSelector("*[data-test='back-to-products']")).getText(),
                                 "Back to products");
+                
+                /* Check productname and price validation on inventory-item page */
                 // assertEquals(itemLabel.getText(), nomeProduto);
                 // assertEquals(itemPrice.getText(), preço);
-        }
-
-        @E("adiciono ao carrinho PO")
-        public void adiciono_ao_carrinho_po() {
 
                 WebElement addBtn = driver.findElement(By.id("add-to-cart"));
                 addBtn.click();

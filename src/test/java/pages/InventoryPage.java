@@ -22,10 +22,10 @@ public class InventoryPage extends CommonPage{
         return By.cssSelector("option[value=\"" + local + "\"]");
     }
 
-    WebElement itemLabel = driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='"
-                                                        + nomeProduto + "']"));
+    // WebElement itemLabel = driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='"
+    //                                                     + nomeProduto + "']"));
 
-    public void selecionarProduto(String nomeProduto) {
-        itemLabel.click();
-    }
+    // public void selecionarProduto(String nomeProduto) {
+    //     itemLabel.click();
+    // }
 }
