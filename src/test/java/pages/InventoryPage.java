@@ -1,4 +1,4 @@
-package test.java.pages;
+package pages;
 
 import java.time.Duration;
 
@@ -22,8 +22,8 @@ public class InventoryPage extends CommonPage{
         return By.cssSelector("option[value=\"" + local + "\"]");
     }
 
-    @FindBy(xpath = "//div[@data-test='inventory-item-name' and text()='" + nomeProduto + "']")
-    WebElement itemLabel;
+    WebElement itemLabel = driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and text()='"
+                                                        + nomeProduto + "']"));
 
     public void selecionarProduto(String nomeProduto) {
         itemLabel.click();
