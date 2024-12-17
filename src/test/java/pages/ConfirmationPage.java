@@ -20,32 +20,11 @@ public class ConfirmationPage extends CommonPage{
         return By.cssSelector("option[value=\"" + local + "\"]");
     }
 
-    @FindBy(id = "first-name")
-    WebElement firstNameField;
+    @FindBy(css = "*[data-test='complete-header']")
+    WebElement messageLabel;
 
-    @FindBy(id = "last-name")
-    WebElement lastNameField;
-
-    @FindBy(id = "postal-code")
-    WebElement zipcodeField;
-
-    @FindBy(id = "continue")
-    WebElement continueBtn;
-
-    public void preencherNome(String nome){
-        firstNameField.sendKeys(nome);
-    }
-
-    public void preencherSobrenome(String sobreNome){
-        lastNameField.sendKeys(sobreNome);
-    }
-
-    public void preencherCodigoPostal(String codigoPostal){
-        zipcodeField.sendKeys(codigoPostal);
-    }
-
-    public void clicarBotãoContinue(){
-        continueBtn.click();
+    public String lerMessagemSucesso(){
+        return messageLabel.getText();
     }
 
 }

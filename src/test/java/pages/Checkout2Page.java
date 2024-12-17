@@ -20,11 +20,11 @@ public class Checkout2Page extends CommonPage{
         return By.cssSelector("option[value=\"" + local + "\"]");
     }
 
-    @FindBy(css = "button[data-test='checkout']")
-    WebElement checkoutBtn;
+    @FindBy(id = "finish")
+    WebElement finishBtn;
 
-    public void clicarBotãoCheckout(){
-        checkoutBtn.click();
+    public void clicarBotãoFinish(){
+        finishBtn.click();
     }
 
 }

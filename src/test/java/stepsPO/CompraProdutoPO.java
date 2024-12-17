@@ -196,8 +196,6 @@ public class CompraProdutoPO {
                 assertEquals(itemLabel.getText(), nomeProduto);
                 assertEquals(itemPrice.getText(), preço);
 
-                // WebElement checkoutBtn = driver.findElement(By.cssSelector("button[data-test='checkout']"));
-                // checkoutBtn.click();
                 cartPage.clicarBotãoCheckout();
         }
 
@@ -256,9 +254,8 @@ public class CompraProdutoPO {
         @Quando("clico no botão de confirmação PO")
         public void clico_no_botão_de_confirmação_po() {
 
-                WebElement finishBtn = driver
-                                .findElement(By.id("finish"));
-                finishBtn.click();
+                checkout2Page = new Checkout2Page(driver);
+                checkout2Page.clicarBotãoFinish();
 
                 assertEquals(driver.findElement(
                                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Complete!");
@@ -267,9 +264,8 @@ public class CompraProdutoPO {
         @Entao("o pedido é gerado com sucesso PO")
         public void o_pedido_é_gerado_com_sucesso_po() {
 
-                assertEquals(driver.findElement(
-                                By.cssSelector("*[data-test='complete-header']")).getText(),
-                                "Thank you for your order!");
+                confirmationPage = new ConfirmationPage(driver);
+                assertEquals(confirmationPage.lerMessagemSucesso(), "Thank you for your order!");
         }
 
 }
