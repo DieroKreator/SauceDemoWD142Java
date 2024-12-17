@@ -19,9 +19,10 @@ import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.Base;
+import pages.LoginPage;
 import pages.InventoryPage;
 import pages.InventoryItemPage;
-import pages.LoginPage;
+import pages.CartPage;
 
 public class CompraProdutoPO {
 
@@ -29,6 +30,7 @@ public class CompraProdutoPO {
         private LoginPage loginPage;
         private InventoryPage inventoryPage;
         private InventoryItemPage inventoryItemPage;
+        private CartPage cartPage;
 
         String nomeProduto;
         String preço;
@@ -124,9 +126,6 @@ public class CompraProdutoPO {
 
                 inventoryItemPage.clicarLinkCart();
 
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='item-quantity']")).getText(), "1");
-
                 // Ativar a sincronização para o robô executar devagar
                 // E podermos visualizar o funcionamento
                 // Importante: É só como curiosidade ou em caso de problemas
@@ -151,6 +150,12 @@ public class CompraProdutoPO {
 
         @E("confirmo o pedido do item {string} com valor {string} PO")
         public void confirmo_o_pedido_do_item_com_valor_po(String nomeProduto, String preço) {
+
+                cartPage = new CartPage(driver);
+
+                Assert.assertEquals(cartPage.lerNomeDaGuia(), "Your Cart");
+                // assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
+                assertEquals(driver.findElement(By.cssSelector("*[data-test='item-quantity']")).getText(), "1");
 
                 WebElement itemLabel;
                 WebElement itemPrice;
@@ -185,35 +190,35 @@ public class CompraProdutoPO {
                 assertEquals(itemLabel.getText(), nomeProduto);
                 assertEquals(itemPrice.getText(), preço);
 
-                WebElement checkoutBtn = driver.findElement(By.cssSelector("button[data-test='checkout']"));
-                checkoutBtn.click();
-
-                assertEquals(driver.findElement(
-                                By.cssSelector("*[data-test='title']")).getText(), "Checkout: Your Information");
+                // WebElement checkoutBtn = driver.findElement(By.cssSelector("button[data-test='checkout']"));
+                // checkoutBtn.click();
+                cartPage.clicarBotãoCheckout();
         }
 
         @E("preencho as informações pessoais PO")
         public void preencho_as_informações_pessoais_po() {
 
-                WebElement firstnameField = driver.findElement(By.id("first-name"));
-                firstnameField.sendKeys("Usuario");
+                checkout1Page = new Checkout1Page(driver);
+                // assertEquals(driver.findElement(
+                //                 By.cssSelector("*[data-test='title']")).getText(), "Checkout: Your Information");
+                Assert.assertEquals(checkout1Page.lerNomeDaGuia(), "Checkout: Your Information");
 
-                WebElement lastnameField = driver.findElement(By.id("last-name"));
-                lastnameField.sendKeys("Test");
+                checkout1Page.preencherNome();
 
-                WebElement zipcodeField = driver.findElement(By.id("postal-code"));
-                zipcodeField.sendKeys("92158485");
+                checkout1Page.preencherSobrenome();
 
-                WebElement continueBtn = driver.findElement(By.id("continue"));
-                continueBtn.click();
+                checkout1Page.preencherCodigoPostal();
 
-                assertEquals(driver.findElement(
-                                By.cssSelector("*[data-test='title']")).getText(), "Checkout: Overview");
+                checkout1Page.clicarBotãoContinue();
+
         }
 
         @E("valido as informações do pedido com {string} e {string} PO")
         public void valido_as_informações_do_pedido_com_e_po(String nomeProduto, String preço) {
 
+                assertEquals(driver.findElement(
+                        By.cssSelector("*[data-test='title']")).getText(), "Checkout: Overview");
+                        
                 WebElement itemLabel = driver
                                 .findElement(By.xpath("//div[@class='inventory_item_name' and text()='" + nomeProduto
                                                 + "']"));
