@@ -1,4 +1,4 @@
-package test.java.pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,24 +18,24 @@ public class LoginPage extends CommonPage{
         return By.cssSelector("option[value=\"" + local + "\"]");
     }
 
-    @FindBy(cssSelector = "[data-test=\"username\"]")
+    @FindBy(css = "input[data-test=\"username\"]")
     WebElement usernameField;
 
-    @FindBy(cssSelector = "[data-test=\"password\"]")
+    @FindBy(css = "input[data-test=\"password\"]")
     WebElement passwordField;
 
-    @FindBy(cssSelector = "[data-test=\"login-button\"]")
+    @FindBy(css = "input[data-test=\"login-button\"]")
     WebElement loginBtn;
 
     public void acessarLoginPage(String url){
         driver.get(url);
     }
 
-    protected void preencherUsername(){
+    public void preencherUsername(){
         usernameField.sendKeys("standard_user");
     }
 
-    protected void preencherPassword(){
+    public void preencherPassword(){
         usernameField.sendKeys("secret_sauce");
     }
 
