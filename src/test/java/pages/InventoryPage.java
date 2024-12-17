@@ -4,9 +4,13 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class InventoryPage {
+public class InventoryPage extends CommonPage{
+
+    String nomeProduto;
 
     public InventoryPage(WebDriver driver) {
         super(driver);
