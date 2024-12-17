@@ -3,7 +3,7 @@ Funcionalidade: Compra Produto PO
     Selecionar e comprar um produto
 
   Esquema do Cenario: Comprar um produto com sucesso PO
-    Dado que acesso o site "https://www.saucedemo.com/"
+    Dado que acesso o site "https://www.saucedemo.com/" PO
     E faço login PO
     E seleciono o produto <produto> com valor <preço> PO
     E adiciono ao carrinho PO
