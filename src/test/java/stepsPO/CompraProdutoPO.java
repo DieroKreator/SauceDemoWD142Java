@@ -18,17 +18,23 @@ import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
-import test.java.pages.InventoryPage;
-import test.java.pages.LoginPage;
+import pages.Base;
+import pages.InventoryPage;
+import pages.LoginPage;
 
 public class CompraProdutoPO {
 
-        WebDriver driver;
+        final WebDriver driver;
         private LoginPage loginPage;
         private InventoryPage inventoryPage;
 
         String nomeProduto;
         String preço;
+
+        // Constructor
+        public CompraProdutoPO(Base base) {
+                this.driver = base.driver;
+        }
 
         @Dado("que acesso o site {string} PO")
         public void que_acesso_o_site_po(String url) {
@@ -43,21 +49,18 @@ public class CompraProdutoPO {
 
                 loginPage = new LoginPage(driver);
 
-                login.preencherUsername();
-                login.preencherPassword();
+                loginPage.preencherUsername();
+                loginPage.preencherPassword();
 
-                login.clicarBotãoLogin();
+                loginPage.clicarBotãoLogin();
                 assertEquals(driver.findElement(By.cssSelector("*[data-test=\"title\"]")).getText(), "Products");
         }
 
-        @E("seleciono o produto {string} com valor {string} PO")
+        @Dado("seleciono o produto {string} com valor {string} PO")
         public void seleciono_o_produto_com_valor_po(String nomeProduto, String preço) {
 
                 WebElement itemLabel;
                 WebElement itemPrice;
-
-                inventoryPage.selecionarProduto(nomeProduto, preço);
-
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
                 {
