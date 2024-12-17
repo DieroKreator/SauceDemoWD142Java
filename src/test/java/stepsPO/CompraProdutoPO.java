@@ -20,6 +20,7 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.Base;
 import pages.InventoryPage;
+import pages.InventoryItemPage;
 import pages.LoginPage;
 
 public class CompraProdutoPO {
@@ -27,6 +28,7 @@ public class CompraProdutoPO {
         final WebDriver driver;
         private LoginPage loginPage;
         private InventoryPage inventoryPage;
+        private InventoryItemPage inventoryItemPage;
 
         String nomeProduto;
         String preço;
@@ -96,10 +98,6 @@ public class CompraProdutoPO {
                 assertEquals(itemPrice.getText(), preço);
 
                 itemLabel.click();
-        }
-
-        @E("adiciono ao carrinho PO")
-        public void adiciono_ao_carrinho_po() {
 
                 // Wait for the element to be visible and fetch its text
                 WebElement backToProductsButton = wait.until(
@@ -108,24 +106,39 @@ public class CompraProdutoPO {
 
                 assertEquals(driver.findElement(By.cssSelector("*[data-test='back-to-products']")).getText(),
                                 "Back to products");
-                
+
                 /* Check productname and price validation on inventory-item page */
                 // assertEquals(itemLabel.getText(), nomeProduto);
                 // assertEquals(itemPrice.getText(), preço);
+        }
 
-                WebElement addBtn = driver.findElement(By.id("add-to-cart"));
-                addBtn.click();
+        @E("adiciono ao carrinho PO")
+        public void adiciono_ao_carrinho_po() {
 
-                WebElement removeBtn = driver.findElement(By.cssSelector("*[data-test='remove']"));
-                removeBtn.isDisplayed();
+                inventoryItemPage = new InventoryItemPage(driver);
 
-                assertEquals(driver.findElement(By.cssSelector("*[data-test='shopping-cart-badge']")).getText(), "1");
+                inventoryItemPage.clicarBotãoAddToCart();
 
-                WebElement cartLink = driver.findElement(By.cssSelector("*[data-test='shopping-cart-link']"));
-                cartLink.click();
+                assertEquals(driver.findElement(By.cssSelector("*[data-test='shopping-cart-badge']")).getText(),
+                                "1");
+
+                inventoryItemPage.clicarLinkCart();
 
                 assertEquals(driver.findElement(By.cssSelector("*[data-test='title']")).getText(), "Your Cart");
                 assertEquals(driver.findElement(By.cssSelector("*[data-test='item-quantity']")).getText(), "1");
+
+                // Ativar a sincronização para o robô executar devagar
+                // E podermos visualizar o funcionamento
+                // Importante: É só como curiosidade ou em caso de problemas
+                // O indicado é deixar o robô executar o mais rápido possível
+
+                synchronized (driver) {
+                        try {
+                                driver.wait(1000);
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+                }
         }
 
         public void delay(int milliseconds) {
